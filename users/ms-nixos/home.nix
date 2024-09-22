@@ -7,10 +7,8 @@
   ];
 
   programs.git = {
-    enable = true;
     userName = "Manas73";
     userEmail = "manas.sambare@gmail.com";
-
   };
 
 }

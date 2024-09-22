@@ -1,4 +1,4 @@
-{ username, ... }: {
+{ pkgs, username, ... }: {
 
     home = {
      
@@ -10,5 +10,9 @@
     };
     
     programs.home-manager.enable = true;
+    programs.git.enable = true;
+    
+    
+    home.packages = [ pkgs.git-credential-manager ];
 
 }
