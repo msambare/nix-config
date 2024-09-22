@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, username, full_name, timezone, locale, ... }:
 
 {
   imports =
@@ -25,10 +25,10 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Asia/Kolkata";
+  time.timeZone = timezone;
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_IN";
+  i18n.defaultLocale = locale;
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_IN";
@@ -49,9 +49,9 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.ms-nixos = {
+  users.users.${username} = {
     isNormalUser = true;
-    description = "Manas Sambare";
+    description = full_name;
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
   };

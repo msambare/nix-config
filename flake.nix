@@ -18,8 +18,18 @@
   
     nixosConfigurations = {
       alfred = let
+
         username = "ms-nixos";
-        specialArgs = {inherit username;};
+        full_name = "Manas Sambare";
+        timezone = "Asia/Kolkata";
+        locale = "en_IN";
+
+        specialArgs = {
+          inherit username;
+          inherit full_name;
+          inherit timezone;
+          inherit locale;
+        };
       in
         nixpkgs.lib.nixosSystem {
 
