@@ -2,7 +2,10 @@
 
 let
   terminalOptions = [ "alacritty" "kitty" ];
+  invalidTerminals = builtins.filter (t: !(builtins.elem t terminalOptions)) terminals;
 in
+assert lib.assertMsg (invalidTerminals == [])
+    "Error: Invalid terminals specified: ${toString invalidTerminals}";
 {
   imports = lib.lists.flatten (map (terminal:
     if builtins.elem terminal terminalOptions
