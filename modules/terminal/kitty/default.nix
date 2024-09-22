@@ -1,10 +1,12 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, lib, config, username, ... }: {
 
     options = {
         kitty.enable = lib.mkEnableOption "enables kitty";
     };
 
     config = {
-        programs.kitty.enable = true;
+        home-manager.users.${username} = {
+            programs.kitty.enable = true;
+        };
     };
 }

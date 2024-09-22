@@ -1,10 +1,12 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, lib, config, username, ... }: {
 
     options = {
         alacritty.enable = lib.mkEnableOption "enables alacritty";
     };
 
     config = {
-        programs.alacritty.enable = true;
+        home-manager.users.${username} = {
+            programs.alacritty.enable = true;
+        };
     };
 }
