@@ -23,12 +23,14 @@
         full_name = "Manas Sambare";
         timezone = "Asia/Kolkata";
         locale = "en_IN";
+        terminals = [ "kitty" ];
 
         specialArgs = {
           inherit username;
           inherit full_name;
           inherit timezone;
           inherit locale;
+          inherit terminals;
         };
       in
         nixpkgs.lib.nixosSystem {
@@ -38,6 +40,7 @@
           
           modules = [
             ./hosts/alfred
+            ./users/${username}/modules.nix
             
             home-manager.nixosModules.home-manager
             {
