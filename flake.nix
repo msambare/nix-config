@@ -23,25 +23,29 @@
   
     nixosConfigurations = {
       alfred = let
-
+        system = "x86_64-linux";
         username = "ms-nixos";
         full_name = "Manas Sambare";
         timezone = "Asia/Kolkata";
         locale = "en_IN";
         terminals = [ "kitty" ];
+        keyring = "gnome-keyring";
+        window_manager = "i3";
 
         specialArgs = {
+          inherit system;
           inherit username;
           inherit full_name;
           inherit timezone;
           inherit locale;
           inherit terminals;
+          inherit keyring;
+          inherit window_manager;
         };
       in
         nixpkgs.lib.nixosSystem {
 
           inherit specialArgs;
-          system = "x86_64-linux";
           
           modules = [
             ./hosts/alfred
