@@ -1,21 +1,10 @@
 { pkgs, lib, terminals, ... }:
-
 let
-  terminalOptions = [ "alacritty" "kitty" ];
-  invalidTerminals = builtins.filter (t: !(builtins.elem t terminalOptions)) terminals;
+  functions = import ../functions.nix { inherit pkgs lib; };
+  terminal_options = [ "alacritty" "kitty" ];
 in
-assert lib.assertMsg (invalidTerminals == [])
-    "Error: Invalid terminals specified: ${toString invalidTerminals}";
-{
-  imports = lib.lists.flatten (map (terminal:
-    if builtins.elem terminal terminalOptions
-    then [ (./. + "/${terminal}") ]
-    else []
-  ) terminals);
-
-  config = lib.mkMerge (map (terminal:
-    lib.mkIf (builtins.elem terminal terminalOptions) {
-      ${terminal}.enable = true;
-    }
-  ) terminals);
+functions.makeModuleConfig {
+  options = terminal_options;
+  current = terminals;
+  module_name = "terminal";
 }
