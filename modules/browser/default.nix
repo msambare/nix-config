@@ -4,7 +4,7 @@ let
   functions = import ../functions.nix { inherit pkgs lib; };
   browser_options = [ "vivaldi" "firefox" ];
 
-  browserFinalizer = _: {
+  browserConfig = _: {
     home-manager.users."${username}".xdg.mimeApps = {
       defaultApplications = {
         "text/html" = "${default_browser}.desktop";
@@ -21,5 +21,5 @@ in
     options = browser_options;
     current = browsers;
     module_name = "browser";
-    extra_config = browserFinalizer;
+    extraConfig = browserConfig;
   }

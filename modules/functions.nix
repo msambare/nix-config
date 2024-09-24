@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
 let
-  makeModuleConfig = { options, current ? [], module_name, conditional_imports ? [], extra_config ? (_: {}) }:
+  makeModuleConfig = { options, current ? [], module_name, conditional_imports ? [], extraConfig ? (_: {}) }:
     let
         currentList = if builtins.isList current
         then if builtins.elem "all" current
@@ -37,7 +37,7 @@ let
             }
           ) currentList
         ))
-      ] ++ [(extra_config currentList)]);  # Execute the finalizer function at the end
+      ] ++ [(extraConfig currentList)]);  # Execute the finalizer function at the end
     };
 in
 {
