@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
 let
-  makeModuleConfig = { options, current, module_name, conditional_imports ? [] }:
+  makeModuleConfig = { options, current, module_name, conditional_imports ? [], extra_config ? (_: {}) }:
     let
       currentList = if builtins.isList current && current != []
         then current
@@ -16,7 +16,7 @@ let
       "Error: Invalid options specified: ${toString invalid_options}";
 
     {
-      imports = lib.lists.flatten (
+       imports = lib.lists.flatten (
         # Existing import logic for each window manager option
         map (option:
           if builtins.elem option options
@@ -25,13 +25,15 @@ let
         ) currentList
       ) ++ conditional_imports; # Add the conditional imports at the end
 
-      config = lib.mkMerge (
-        map (option:
-          lib.mkIf (builtins.elem option options) {
-            "${option}".enable = true;
-          }
-        ) currentList
-      );
+      config = lib.mkMerge ([
+        (lib.mkMerge (
+          map (option:
+            lib.mkIf (builtins.elem option options) {
+              "${option}".enable = true;
+            }
+          ) currentList
+        ))
+      ] ++ [(extra_config currentList)]);  # Execute the finalizer function at the end
     };
 in
 {

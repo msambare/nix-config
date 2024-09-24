@@ -31,6 +31,8 @@
         terminals = [ "kitty" ];
         keyring = "gnome-keyring";
         window_manager = "i3";
+        browsers = [ "vivaldi" "firefox" ];
+        default_browser = "vivaldi";
 
         specialArgs = {
           inherit system;
@@ -41,6 +43,8 @@
           inherit terminals;
           inherit keyring;
           inherit window_manager;
+          inherit browsers;
+          inherit default_browser;
         };
       in
         nixpkgs.lib.nixosSystem {
