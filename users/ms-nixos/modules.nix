@@ -2,8 +2,9 @@
 
   imports = [
     ../../modules/browser
-    ../../modules/terminal
     ../../modules/keyring
+    ../../modules/terminal
+    ../../modules/utility
     ../../modules/window_manager
   ];
 

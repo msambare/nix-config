@@ -64,6 +64,7 @@
     git
     wget
     curl
+    stow
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

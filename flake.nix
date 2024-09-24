@@ -33,6 +33,7 @@
         window_manager = "i3";
         browsers = [ "vivaldi" "firefox" ];
         default_browser = "vivaldi";
+        utilities = [ ];
 
         specialArgs = {
           inherit system;
@@ -45,6 +46,7 @@
           inherit window_manager;
           inherit browsers;
           inherit default_browser;
+          inherit utilities;
         };
       in
         nixpkgs.lib.nixosSystem {
