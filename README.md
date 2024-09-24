@@ -25,7 +25,7 @@ To use this configuration:
 1. Ensure you have Nix with Flakes enabled installed on your system.
 2. Clone this repository:
     ```shell
-       git clone https://github.com/Manas73/nix-config.git
+    git clone https://github.com/Manas73/nix-config.git
     ```
 3. Navigate to the repository directory:
     ```shell
