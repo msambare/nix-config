@@ -1,13 +1,17 @@
 { pkgs, lib, ... }:
 
 let
-  makeModuleConfig = { options, current, module_name, conditional_imports ? [], extra_config ? (_: {}) }:
+  makeModuleConfig = { options, current ? [], module_name, conditional_imports ? [], extra_config ? (_: {}) }:
     let
-      currentList = if builtins.isList current && current != []
-        then current
+        currentList = if builtins.isList current
+        then if builtins.elem "all" current
+             then options
+             else current
         else if builtins.isString current
-             then [ current ]
-        else [];
+             then if current == "all"
+                  then options
+                  else [ current ]
+        else [] ;
 
       invalid_options = builtins.filter (t: !(builtins.elem t options)) currentList;
 
