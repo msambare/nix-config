@@ -1,3 +1,10 @@
 
+# Ignore the .idea directory and all it's contents
 .idea/
+
+# Ignore all files and directories containing "sublime"
 *[sS]ublime*
+
+# But include the sublime4 directory and its contents
+!sublime4/
+!sublime4/**
