@@ -26,16 +26,6 @@ Domain name server. Provides additional programs including arpaname` `ddns-confg
 
 ---
 
-### drill
-
-Drill is a HTTP load testing application written in Rust. The main goal for this project is to build a really lightweight tool as alternative to other that require JVM and other stuff.
-
-You can write benchmark files, in YAML format, describing all the stuff you want to test.
-
-**URL:** https://github.com/fcsonline/drill
-
----
-
 ### iftop
 
 iftop does for network usage what top(1) does for CPU usage. It listens to network traffic on a named interface and displays a table of current bandwidth usage by pairs of hosts.
